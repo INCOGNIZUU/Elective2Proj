@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Determinant of Matrix</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form">
+      <div class="part1">
+        <h1>Determinant of the Matrix</h1>
+
+        <p>Please enter the size of the matrix. (n x n)</p>
+        <input id="size" type="number" value="0" />
+        <!-- <p class="note">please note that to many columns will overflow</p> -->
+      </div>
+
+      <div id="matrix" class="grid"></div>
+
+      <div class="part3">
+        <button id="calculateDeterminant">Calculate</button>
+
+        <p id="answer">Determinant :</p>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.3.2/math.js"
+    integrity="sha512-Imer9iTeuCPbyZUYNTKsBWsAk3m7n1vOgPsAmw4OlkGSS9qK3/WlJZg7wC/9kL7nUUOyb06AYS8DyYQV7ELEbg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    "use strict";
+
+    /**
+     * get all the nessesary elements in advance.
+     * this will also save memory and performance than always getting the element when needed
+     */
+    const inputSize = document.querySelector("input#size");
+    const matrix = document.querySelector("#matrix");
+    const calculateBtn = document.querySelector("button");
+    const answer = document.querySelector("#answer");
+
+    /**
+     * add event listener to the input
+     * once change the handler will fire
+     */
+    inputSize.addEventListener("change", (event) => {
+      const size = Number(event.target.value); //  converting the value to Number
+      matrix.innerHTML = ""; //  cleaning the input container. Note: this is memory inefficeint
+
+      if (size < 0) {
+        //  checking if there is no input
+        inputSize.value = "0";
+        return;
+      }
+      updateGrid(size); //  updating the grid with new size once it passed the statement above
+      createInputElements(size * size); //  creation of new input elements
+    });
+
+    function updateGrid(size) {
+      //   function to change the grid
+      matrix.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+      matrix.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+    }
+
+    function createInputElements(size) {
+      //  function to create input elements
+      for (let i = 1; i <= size; i++) {
+        const input = document.createElement("input");
+        input.type = "number";
+        input.value = "0";
+        matrix.append(input);
+      }
+    }
+
+    /**
+     * adding listener to 'calculate button'
+     * once clicked it will fire the handler
+     */
+    calculateBtn.addEventListener("click", function (event) {
+      const inputs = matrix.querySelectorAll("input"); //  getting all the inputs inside
+
+      if (inputs.length === 0) {
+        alert("Please provide the size of MATRIX");
+        inputSize.focus();
+      } else {
+        //create a variable array;
+        const array = [];
+        const N = Number(inputSize.value);
+
+        let i = 1;
+        let tempArray = [];
+
+        inputs.forEach((input) => {
+          //  iterating the inputs and turning the value to MATRIX
+          const value = Number(input.value);
+
+          if (i === N) {
+            tempArray.push(value);
+            array.push(tempArray);
+
+            tempArray = [];
+            i = 1;
+          } else {
+            tempArray.push(value);
+            i++;
+          }
+        });
+
+        console.log(array);
+
+        const determinant = math.det(array); //  geting the determinant of MATRIX using the library "math.js"
+        answer.innerText = `Determinant of Matrix is ${determinant}`; //  showin the result
+      }
+    });
+  </script>
+</html>

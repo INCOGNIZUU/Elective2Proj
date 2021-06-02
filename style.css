@@ -1,0 +1,97 @@
+html,
+body {
+  position: relative;
+  background-color: #003249;
+  min-height: 100vh;
+  font-family: "Kumbh Sans", sans-serif;
+  overflow-x: hidden;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  margin: 100px 0;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #007ea7;
+  width: 70%;
+  min-height: 700px;
+  padding: 1em;
+  border-radius: 1rem;
+}
+.part1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.part3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.grid {
+  justify-content: center;
+  position: relative;
+  margin: 30px 40px 30px 30px;
+  display: grid;
+  gap: 0.5rem;
+}
+
+button {
+  background-color: #80ced7;
+  border: 2px solid #016080;
+  height: 50px;
+  width: 150px;
+  border-radius: 0.5em;
+  font-weight: 500;
+  font-size: 1.2em;
+  margin: 20px;
+}
+button:hover {
+  background-color: #7eafb4;
+}
+#size {
+  height: 3em;
+}
+input {
+  border-color: #007ea7;
+  text-align: center;
+  background-color: #80ced7;
+  border-radius: 0.5rem;
+  height: 2em;
+  font-size: 1.2em;
+}
+#matrix > input {
+  position: relative;
+  padding: 10px;
+  width: 90%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+h1 {
+  margin: 20px;
+  font-weight: 700;
+  font-size: 2em;
+  text-transform: uppercase;
+  color: #9ad1d4;
+}
+p {
+  font-weight: 500;
+  font-size: 1.2em;
+  margin: 20px;
+  color: #ccdbdc;
+}
